@@ -1,0 +1,40 @@
+# Environment & Secrets
+.env
+.env.local
+.env.*.local
+credentials.json
+token.json
+
+# Intermediate & Temporary Files (Layer 3 Intermediates)
+.tmp/
+*.tmp
+*.log
+
+# Dependencies & Build Artefacts
+node_modules/
+dist/
+dist-ssr/
+*.local
+*.apk
+*.aab
+.gradle/
+android/.gradle/
+android/app/build/
+android/build/
+local.properties
+*.jks
+*.keystore
+
+# Python cache & virtual environments
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+env/
+
+# Editor & OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

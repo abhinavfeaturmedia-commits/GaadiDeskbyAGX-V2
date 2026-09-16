@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">GaadiDesk</string>
+    <string name="title_activity_main">GaadiDesk</string>
+    <string name="package_name">com.gaadidesk.app</string>
+    <string name="custom_url_scheme">com.gaadidesk.app</string>
+</resources>

@@ -1,0 +1,616 @@
+﻿Product Requirements Document
+GaadiDesk — Cab Booking & Car Rental Business App (India)
+Version: 1.0Date: 30 August 2026Owner: Abhinav GaikwadStatus: Draft for build planningProduct type: B2B SaaS (membership)Primary platform (Phase 1): Android appSecondary platform (Phase 2): Web console for super-admin + business owners
+1. One-line summary
+GaadiDesk is a simple Android app where Indian cab and car-rental owners can register, pay a membership, and run bookings, cars, drivers, money, and papers from one place — without needing technical skill.
+This is not another Uber for passengers.This is an office in the phone for the business owner.
+Simple example:Ramesh in Kolhapur has 8 cars. Today he writes bookings in a diary, WhatsApps drivers, and forgets insurance expiry. In GaadiDesk he taps “New Booking”, picks car + driver, shares WhatsApp confirmation, and sees today’s cash vs pending.
+2. Problem
+Most small/mid cab and rental operators in India still run the business on:
+Diary / Excel
+WhatsApp chats
+Memory
+Paper RC, insurance, PUC
+Manual GST bills
+This creates daily pain:
+Double booking the same car
+No idea which car is free tomorrow
+Driver took cash, owner does not know
+Extra KM, driver bata, night charge, toll not added correctly
+Insurance / PUC / fitness expired, car still sent on trip
+No clean GST invoice for corporate clients
+Owner cannot see full business from home
+They will not use a complex “enterprise fleet ERP”. The app must feel as easy as WhatsApp.
+3. Product vision
+Phase 1: One Android app per business. Owner and 1–2 staff manage the whole operation.
+Membership: Each car business pays monthly/yearly to use the app. Plans based on number of vehicles + staff.
+Phase 2: A website where:
+You (platform owner) see all businesses, payments, usage, support
+Each business can also open a web dashboard on laptop
+Later, optional public booking page per business
+Long-term (not now): marketplace connecting travellers to member fleets. Do not build this in Phase 1.
+4. Goals
+Business goals (your SaaS)
+Launch a paid membership product for Indian cab/rental operators
+First market: Maharashtra (Pune, Kolhapur, Sangli, Satara, Mumbai), then pan-India
+Make onboarding so easy that a 45-year-old owner can start in 20 minutes
+Recurring revenue from memberships, not one-time app sale
+User goals (the car business)
+Stop double bookings
+Know which car/driver is free
+Collect and track money (cash, UPI, pending)
+Make GST invoice in 30 seconds
+Get alerts before RC / insurance / PUC / fitness expire
+See daily/weekly profit in simple numbers
+Non-goals (do not build in Phase 1)
+Passenger-facing Uber-like booking app
+Live bidding / surge like Ola
+Full accounting software (Tally replacement)
+Multi-country / multi-currency
+EV charging network
+AI damage detection
+Own GPS hardware
+5. Target users
+Primary user — Business owner (non-technical)
+Age 28–55
+Owns 3–50 cars
+Mix of local cab, airport, outstation, self-drive rental
+Uses Android phone all day
+Comfortable with WhatsApp, UPI, YouTube
+Not comfortable with Excel, CRM, English-only software
+Secondary user — Office staff / dispatcher
+Sits in office, takes phone/WhatsApp bookings
+Needs big buttons, fast booking form
+Later user — Driver (Phase 1.5)
+Sees assigned trips
+Starts/ends trip
+Uploads start KM / end KM photo
+Collects payment status
+Platform user — You (Phase 2)
+Super admin on website
+Approves businesses, memberships, support, reports
+6. India business types the app must support
+One business can run more than one type.
+Type
+Simple meaning
+Typical billing
+Local cab
+City drop / hourly
+Per hour + KM, extra KM
+Airport transfer
+Pickup/drop to airport
+Fixed package + waiting + extra KM
+Outstation
+Intercity, 1-way or round
+Per KM + driver bata + night + toll + permit
+Package / tour
+Fixed itinerary with cab
+Package rate + extra KM/hours
+Self-drive rental
+Customer drives
+Per day + extra KM + deposit + fuel policy
+Chauffeur rental
+Car + driver for hours/days
+8hr/80km, 12hr/120km style packages
+Working example (outstation):Pune → Mahabaleshwar, Innova, 2 days.Base: ₹14/km × 250 km min/day. Driver bata ₹400/day. Night halt ₹300. Toll extra. GST 5% or 12% as per business GST setup.
+The app must calculate this with a simple form, not a spreadsheet.
+7. UX principles (most important section)
+If UX is hard, the product fails. Non-technical owners will uninstall.
+WhatsApp-simple. Home screen has 6 large tiles only.
+Hindi + English from day 1. Later Marathi. Privacy text also in simple language.
+Big tap targets. Minimum 48dp buttons. High contrast.
+One job per screen. Do not put 20 fields on one page.
+Smart defaults. Last used car, last rate card, today’s date already filled.
+Voice + photo. Owner can speak customer name, or click RC photo to save vehicle.
+WhatsApp share everywhere. Booking slip, invoice, driver details — share as WhatsApp message/PDF.
+Works on cheap Android. Target Android 8+, 2GB RAM, slow 4G.
+Offline-first for core actions. Create booking, mark payment, view today’s trips even if network drops. Sync later.
+No jargon. Say “Car free?” not “Fleet utilization”. Say “Money not received” not “Accounts receivable”.
+Home screen (Phase 1)
+New Booking
+Today’s Trips
+Cars
+Money
+Customers
+More (drivers, papers, reports, settings)
+Top bar: today’s date, business name, a red badge if insurance/PUC is expiring.
+8. Membership model
+Businesses register → choose plan → pay → use app.
+You are the platform owner. Each car company is a tenant.
+Plans (recommended launch prices)
+Prices are starting point for India SMB. Adjust after 10 customer interviews.
+Plan
+Vehicles
+Staff logins
+Monthly
+Yearly (2 months free)
+Who it is for
+Trial
+3
+1
+₹0 for 14 days
+—
+Try before pay
+Starter
+up to 5
+1
+₹499
+₹4,999
+Small owner-driver + few cars
+Growth
+up to 15
+3
+₹1,499
+₹14,999
+Typical city operator
+Business
+up to 40
+8
+₹2,999
+₹29,999
+Multi-driver fleet
+Agency
+41–100
+15
+₹4,999
+₹49,999
+Travel agency + rental mix
+Add-ons (optional later)
+Extra vehicle pack: ₹99 / vehicle / month
+GPS tracking pack
+Driver app pack
+WhatsApp official API pack
+Extra staff login: ₹99 / month
+Membership rules
+1 business GSTIN = 1 account (can add branches later)
+Payment: UPI, UPI Autopay, card, net banking via Razorpay or Cashfree
+If unpaid after 3-day grace: app becomes read-only (can see old data, cannot create booking)
+Yearly plan gets badge + priority support
+Invoice for membership GST (you charge 18% GST on SaaS)
+Coupon codes for first 50 operators (e.g. MAHA50)
+What membership unlocks
+Booking + cars + drivers + customers
+GST invoice PDF
+Document expiry alerts
+Daily money report
+Cloud backup
+Phase 2: appear in your master website
+Do not lock basic booking behind a complex enterprise plan. Small owners are the wedge.
+9. Phase 1 — Android app modules
+9.1 Onboarding (must be 20 minutes)
+Flow:
+Choose language: English / Hindi
+Create account: mobile OTP (Firebase/MSG91)
+Business details: name, city, phone, WhatsApp, GSTIN (optional), logo
+Business type checkboxes: Cab / Rental / Both
+Add first car (or skip)
+Add first driver (or skip)
+Choose membership → pay / start trial
+Short 4-screen tutorial with real pictures, not text walls
+If GSTIN is entered, auto-fill legal name where possible (GST lookup API).
+9.2 Cars (fleet)
+For each car store:
+Photo
+Number plate (mandatory)
+Category: Hatchback / Sedan / SUV / MUV / Luxury / Tempo / Bus
+Brand + model (Swift Dzire, Innova Crysta, etc.)
+Fuel: Petrol / Diesel / CNG / EV
+Seats
+Owner vs attached (own car or driver-owned attached car)
+Status: Free / On trip / Workshop / Blocked
+Average KM/litre (for later cost)
+Documents: RC, insurance, PUC, fitness, permit (All India / state)
+Expiry dates + photo upload
+Current odometer
+Simple action: Tap car → “Is this car free on 5 Sept?” shows calendar.
+Alert 15 days before any document expiry.
+9.3 Drivers
+Name, photo, phone, WhatsApp
+DL number + expiry + photo
+Badge / police verification (optional)
+Salary vs per-trip commission vs attached
+Status: Available / On trip / Leave
+Assigned default car (optional)
+Emergency contact
+9.4 Customers (simple CRM)
+Name, phone, WhatsApp
+Type: Personal / Corporate
+Company + GSTIN (for corporate)
+Notes (“pays after 7 days”, “always wants Innova”)
+Booking history
+Pending money
+Duplicate check by phone number.
+9.5 Booking (core)
+Create booking in 4 short steps:
+Step 1 — Trip typeLocal / Airport / Outstation / Rental / Package
+Step 2 — When & whereDate, time, pickup, drop, city. Optional map pin.
+Step 3 — Car & driverShow only free cars for that slot. Warn if overlap.
+Step 4 — MoneyRate card auto-fills. Owner can edit. Advance received? Payment mode?
+Then:
+Save
+Share WhatsApp slip to customer
+Share trip card to driver
+Booking statuses
+Enquiry
+Confirmed
+Driver assigned
+Ongoing
+Completed
+Cancelled
+No-show
+Must prevent: two confirmed bookings on same car at overlapping time.
+Must support:
+One-way and round trip
+Extra KM, extra hour
+Driver bata / night halt
+Toll, parking, permit, hill charge
+Waiting charge
+Discount
+GST on / off
+Advance, balance, full payment
+Cancel with reason
+Rental extra fields
+Pickup / return date-time
+Security deposit
+Fuel policy: full-to-full / same-to-same
+Allowed KM per day
+Customer DL + Aadhaar photo
+Start/end inspection photos
+9.6 Fare engine (India-first)
+Each business creates rate cards, not code.
+Examples of rate cards:
+Dzire local: ₹1200 / 8hr / 80km, extra ₹12/km, extra ₹150/hr
+Innova airport PNQ: ₹1400 fixed, 45 min waiting free
+Outstation sedan: ₹11/km, min 250 km/day, bata ₹400
+Self-drive Swift: ₹1800/day, 120 km/day, extra ₹8/km, deposit ₹5000
+GST:
+User sets GST % per service (common: 5% with ITC restrictions or 12% — let owner choose, do not hardcode tax law)
+Invoice shows taxable value, GST, total
+HSN/SAC field (default SAC 9966 / 9964, editable)
+Night charge and bata as optional toggles.
+9.7 Money
+This is not Tally. Only what owners actually need:
+Today collected (cash / UPI / bank)
+Pending from customers
+Driver-wise collection
+Advance vs balance
+Expense: fuel, toll (if paid by owner), workshop, challan, salary
+Simple P&L: income − expense for day/week/month
+Mark payment:
+Cash
+UPI (store UPI ref note)
+Bank / card
+Credit (pending)
+Optional: generate UPI payment QR for the business UPI ID.
+9.8 Invoice & documents
+GST invoice PDF (English + optional Hindi labels)
+Fields: business GSTIN, customer GSTIN, invoice no., place of supply, KM, hours, extras, GST
+Non-GST bill for unregistered small owners
+Booking confirmation slip
+Driver duty slip
+Rental agreement PDF (simple template)
+Consecutive invoice numbering per financial year (2026-27)
+Share via WhatsApp, print, download.
+9.9 Papers & reminders
+Calendar of:
+Insurance
+PUC
+Fitness
+Permit
+DL
+EMI (optional)
+Push notification + in-app red list: “3 cars insurance ending this month”.
+9.10 Reports (simple)
+Tiles, not graphs-first:
+Today’s trips
+This month income
+Pending money
+Car-wise income
+Driver-wise trips
+Occupied vs free cars today
+Cancelled trips
+Export CSV for CA (Phase 1.5).
+9.11 Team & permissions
+Roles:
+Owner: everything
+Staff: bookings, customers, money in (not delete business, not membership)
+Accountant (later): invoices + reports only
+Driver (later): own trips only
+PIN or pattern lock for staff phone sharing.
+10. Phase 1.5 (after first 20 paying businesses)
+Do not put these in MVP.
+Driver Android app
+Live GPS (phone GPS or cheap tracker)
+WhatsApp Cloud API auto messages
+FastTag / fuel card import
+Tally / Zoho Books export
+Multi-branch
+Customer enquiry form link
+Recurring corporate contract (monthly company billing)
+Referral: owner invites another operator, gets 1 month free
+11. Phase 2 — Connecting website
+Build after Android MVP is stable and 10+ businesses are paying.
+11.1 Super-admin website (you)
+You log in and see the whole network.
+Must have
+List of all registered car businesses
+Search by city, plan, status
+Business profile: cars count, bookings this month, last active
+Membership: trial / paid / expired / grace
+Payment history, GST invoices you issued
+Impersonate / support view (with audit log)
+Broadcast notice: “App update, please upgrade”
+Coupons and plan editor
+Abuse / fake GST flag
+Basic charts: new signups, MRR, churn, active businesses
+Support tickets
+Simple example:You open website Monday morning. Pune shows 12 businesses, 3 trials ending, 1 payment failed. You WhatsApp them from the panel.
+11.2 Business web dashboard
+Same data as app, better for office laptop:
+Calendar of all cars
+Invoice printing
+Bulk customer import
+Staff management
+Rate cards
+11.3 Optional public microsite (Phase 2.5)
+Each member can get:
+gaadidesk.in/shravya-cabs
+Vehicle list
+Enquiry form
+WhatsApp button
+This helps you sell membership: “Your digital office + mini website”.
+11.4 Data you must see as platform owner
+Business ID, name, city, phone
+Plan, next billing date
+Vehicle count, booking count
+Last app open time
+Error logs
+Feature usage (who uses invoices, who only uses bookings)
+You should not freely read customer Aadhaar photos in daily work. Sensitive docs = restricted access + reason log.
+12. Information architecture
+Android app tabs / IA
+Home
+Bookings
+Cars
+Money
+Menu: Drivers, Customers, Papers, Rate cards, Invoices, Membership, Help, Language, Logout
+Website IA (Phase 2)
+Super admin: Overview, Businesses, Memberships, Payments, Support, Settings
+Business: Dashboard, Bookings, Fleet, People, Accounts, Website, Settings
+13. Suggested tech stack
+Chosen so you can build fast with skills you already use (React, Node, Android-friendly).
+Layer
+Recommendation
+Why
+Mobile app
+Flutter (Android first, iOS later almost free)
+One codebase, cheap devices, fast UI
+Backend
+Node.js + Express or NestJS
+You already know this
+Database
+PostgreSQL (Supabase or RDS)
+Multi-tenant, reports, relations
+Auth
+Phone OTP
+Owners hate email-password
+File storage
+S3 / Cloudflare R2 / Supabase Storage
+RC, DL, invoices
+Push
+Firebase Cloud Messaging
+Reminders
+Maps
+Google Maps or Mappls
+India addressing
+Payments
+Razorpay or Cashfree
+UPI Autopay for membership
+SMS
+MSG91 / Twilio
+OTP
+WhatsApp
+Click to chat first; Cloud API later
+Owners live in WhatsApp
+PDF
+Backend PDF kit
+GST invoice
+Admin web
+Next.js / React
+Phase 2
+Hosting
+India region (Mumbai)
+Speed + DPDP comfort
+Architecture rule: one backend API for app + website. Do not make two systems.
+Multi-tenant rule: every table has business_id. Super admin queries across tenants. Business users never see another business’s data.
+Offline
+Local DB on phone (Drift / Hive / SQLite)
+Queue: create booking offline → sync when net returns
+Conflict rule: server timestamp wins, show “updated on another phone”
+14. Data model (simple)
+Main objects:
+User
+Business
+Membership / Subscription
+Branch (later)
+Vehicle
+VehicleDocument
+Driver
+Customer
+RateCard
+Booking
+BookingCharge (line items: base, extra km, bata, toll…)
+Payment
+Expense
+Invoice
+Reminder
+AuditLog
+IDs: UUID. Invoice numbers human-friendly: GD/2026-27/0124.
+15. Compliance, trust, legal (India)
+DPDP Act
+App will store phone, address, DL, Aadhaar images, GSTIN, trip history.
+Must-have from day 1:
+Clear privacy notice in English + Hindi
+Consent checkbox on signup
+Purpose limitation: data only for running their cab business
+Role-based access
+Encryption in transit (HTTPS) and at rest for documents
+Ability to export / delete a business’s data
+Breach process (notify Board without delay; industry practice often treats 72 hours as the working target)
+No children’s data
+Vendor contracts with OTP, SMS, storage providers
+Data residency preference: India region
+Full DPDP substantive duties phase in through 2026–May 2027. Design privacy now so you do not rebuild later.
+Other
+GST e-invoice / e-way is not MVP. Only GST-looking PDF + report for CA.
+Do not store Aadhaar number as searchable text if you can avoid it; store image + last 4 digits if needed.
+RBI/UPI: do not hold customer card data. Use payment gateway.
+Play Store: privacy policy URL, data safety form, account deletion.
+Terms: you are software vendor, not a transport company. Member business is responsible for permits, insurance, driver conduct.
+16. Non-functional requirements
+App cold start < 3 seconds on typical device
+Create booking < 45 seconds for trained staff
+API p95 < 500 ms in India
+99.5% uptime for paid hours (6am–midnight IST)
+Support 1,000 businesses × 50 bookings/day in Year 1 design
+Autosave forms so back button does not lose data
+Accessibility: font scaling, Hindi fonts (Noto Sans Devanagari)
+17. Analytics (for you)
+Track events:
+Signup started / OTP success
+Trial started
+First car added
+First booking created
+Invoice generated
+Paid conversion
+Booking created offline
+Feature used per week
+Churn reason (short form)
+North-star metric: weekly active businesses that created at least 5 bookings.
+18. Launch roadmap
+Phase 0 — 2 weeks (validate)
+Talk to 15 operators in Pune/Kolhapur
+Watch how they take a WhatsApp booking
+Confirm price they will pay
+Collect 5 rate cards (Dzire/Innova local + outstation)
+Phase 1 MVP — 10–12 weeks
+Week 1–2: design + backend skeleton + auth + tenantWeek 3–4: cars, drivers, customersWeek 5–7: booking + clash check + fareWeek 8: money + invoice PDFWeek 9: membership paymentsWeek 10: reminders + WhatsApp share + HindiWeek 11: offline + testing on cheap phonesWeek 12: Play Store closed testing with 10 real operators
+MVP checklist (must all work)
+[ ] OTP login
+[ ] Add car + driver
+[ ] Create 4 trip types
+[ ] No double booking
+[ ] WhatsApp share slip
+[ ] Record payment
+[ ] GST/non-GST invoice
+[ ] Document expiry alert
+[ ] Trial + paid membership
+[ ] Hindi + English
+Phase 1.5 — +6 weeks after real usage
+Driver app, GPS, CSV export, WhatsApp API
+Phase 2 website — 6–8 weeks
+Super admin + business web dashboard
+Phase 2.5
+Public microsite per business
+19. Team to build this
+Lean team:
+You: product + sales + first support
+1 Flutter developer
+1 backend developer (can be you initially)
+1 UI designer (part-time, India-first, large buttons)
+1 tester on real cheap Androids
+If budget is tight: Flutter + Firebase/Supabase first, move heavy reports to Node later.
+20. Risks
+Risk
+Why it hurts
+Mitigation
+App too complex
+Owners leave in 3 days
+6-tile home, 4-step booking
+They stay on WhatsApp
+No habit change
+Booking must create WhatsApp message, not replace it
+Price too high
+No conversion
+Trial + ₹499 starter
+Play Store rejection
+Delay
+Privacy policy, account delete, no transport marketplace claims
+You become unpaid support
+Time drain
+In-app video in Hindi, WhatsApp support hours
+Building marketplace too early
+Distracts from B2B
+Hard non-goal until 100 paying fleets
+Data leak of DL/Aadhaar
+Legal + trust death
+Encryption, limited access, India hosting
+21. Success metrics (first 6 months)
+50 businesses completed onboarding
+20 paying memberships
+70% of trial users created 10+ bookings
+< 5% bookings with overlapping car (data quality)
+Play Store rating ≥ 4.3
+Monthly churn < 8%
+Support tickets < 10 minutes average first reply on WhatsApp
+22. Open questions (decide before coding)
+Brand name: GaadiDesk vs your own brand (Shrawello Office / other)?
+Only chauffeur cab first, or self-drive rental in same MVP?
+Should attached (driver-owned) cars be in MVP?
+Do you want customer-facing booking in Phase 2 or never?
+Will you sell city-wise (only Maharashtra first)?
+In-house build vs Flutter agency?
+Do invoices need your CA’s exact GST format before launch?
+Recommended decisions
+Maharashtra first
+Cab + rental both in MVP, but rental agreement can be a simple PDF
+No passenger app
+No live marketplace
+Membership from day 1, even if first 20 get heavy discount
+23. Competitive position
+Existing tools are either:
+Too heavy / English-only / made for big rental companies
+Taxi “clones” focused on passenger booking
+Excel + WhatsApp (your real competitor)
+GaadiDesk wins if it is:
+Android-first
+Hindi
+WhatsApp-native
+Built around Indian extras (bata, night halt, 8hr/80km, GST PDF)
+Cheap membership
+Made for 5–40 car owners, not airports-scale Avis
+24. Sample user stories (MVP)
+As an owner, I can add my Innova and its insurance date so I get a reminder before it expires.
+As staff, I can create an airport booking in under 1 minute and WhatsApp the slip.
+As owner, I cannot assign a car that is already on a trip.
+As owner, I can see “Ramesh still has to pay ₹2,400”.
+As owner, I can make a GST invoice and share PDF.
+As a new business, I can start 14-day trial without calling anyone.
+As platform owner (Phase 2), I can see which businesses did not open the app for 7 days.
+25. Copy & language guide
+Use these words in the app:
+Do not say
+Say
+Fleet utilization
+Cars on trip vs free
+Dispatch
+Give trip to driver
+Accounts receivable
+Money pending
+Tenant
+Business
+Telematics
+Live location (later)
+SAC code
+GST type (advanced)
+Error messages in human language:“This car already has a trip at 5 PM. Pick another car.”
+26. Appendix — first rate-card templates to ship
+Preload these so owner only edits prices:
+Local 8hr / 80km
+Local 12hr / 120km
+Airport pickup
+Airport drop
+Outstation per km + bata
+Self-drive per day
+Default vehicle classes: Hatchback, Sedan, Ertiga/MUV, Innova, Luxury, Tempo Traveller.
+End of PRD v1.0 — ready to convert into Figma screens and sprint tickets.

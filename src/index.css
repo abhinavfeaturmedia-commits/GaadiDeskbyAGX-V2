@@ -1,0 +1,469 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
+
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+:root {
+  --canvas-bg: #FAF8F2;
+  --canvas-muted: #F5EFE6;
+  --card-bg: #FFFFFF;
+  --card-border: #EFEAE1;
+  --accent-lime: #D4F05B;
+  --accent-peach: #F8B052;
+  --accent-amber: #F59E0B;
+  --accent-sky: #85CFF3;
+  --accent-coral: #FF6B6B;
+  --accent-rose: #FF9EAA;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #F3EFE6;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans Devanagari', 'Mangal', 'Devanagari Sangam MN', sans-serif;
+  -webkit-tap-highlight-color: transparent;
+  color: #1E232A;
+}
+
+/* Custom scrollbars */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Mobile Virtual Keyboard Focus & Scroll Protection */
+input, select, textarea {
+  scroll-margin-top: 80px;
+  scroll-margin-bottom: 140px;
+  font-size: 16px; /* Prevents auto-zoom on iOS Safari */
+}
+
+@media (min-width: 640px) {
+  input, select, textarea {
+    font-size: inherit;
+  }
+}
+
+/* Modal Backdrop & Body Lock */
+.modal-backdrop-open {
+  overflow: hidden !important;
+  touch-action: none;
+}
+
+/* Spring-like active tap feel (Emil Kowalski / Apple UI standard) */
+.tap-active {
+  transition: transform 140ms cubic-bezier(0.23, 1, 0.32, 1), opacity 140ms ease;
+  user-select: none;
+}
+
+.tap-active:active {
+  transform: scale(0.96);
+}
+
+.tap-bounce {
+  transition: transform 160ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.tap-bounce:active {
+  transform: scale(0.93);
+}
+
+/* Animated floating badge */
+@keyframes float-gentle {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-5px); }
+}
+
+.animate-float {
+  animation: float-gentle 3.5s ease-in-out infinite;
+}
+
+@keyframes pulse-subtle {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.06); opacity: 0.85; }
+}
+
+.badge-pulse {
+  animation: pulse-subtle 2s infinite ease-in-out;
+}
+
+/* Audio waveform animation */
+@keyframes waveBar {
+  0%, 100% { height: 6px; }
+  50% { height: 18px; }
+}
+
+.waveform-bar-1 { animation: waveBar 1.1s ease-in-out infinite 0.1s; }
+.waveform-bar-2 { animation: waveBar 0.9s ease-in-out infinite 0.3s; }
+.waveform-bar-3 { animation: waveBar 1.3s ease-in-out infinite 0.2s; }
+.waveform-bar-4 { animation: waveBar 0.8s ease-in-out infinite 0.4s; }
+.waveform-bar-5 { animation: waveBar 1.0s ease-in-out infinite 0.15s; }
+
+.waveform-bar-1.paused,
+.waveform-bar-2.paused,
+.waveform-bar-3.paused,
+.waveform-bar-4.paused,
+.waveform-bar-5.paused {
+  animation-play-state: paused !important;
+  height: 6px !important;
+  opacity: 0.6;
+}
+
+/* Voice mic recording pulse */
+@keyframes voiceRipple {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(248, 176, 82, 0.7); }
+  70% { transform: scale(1.08); box-shadow: 0 0 0 10px rgba(248, 176, 82, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(248, 176, 82, 0); }
+}
+
+.voice-listening {
+  animation: voiceRipple 1.4s infinite ease-out;
+}
+
+/* Directional step transitions for auth modal & simulator */
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.slide-in-right {
+  animation: slideInFromRight 260ms cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+.slide-in-left {
+  animation: slideInFromLeft 260ms cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+/* Stagger animations for smooth card entrance */
+@keyframes fadeInSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeInSlideUp 280ms cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+.stagger-1 { animation: fadeInSlideUp 260ms cubic-bezier(0.23, 1, 0.32, 1) 40ms forwards; opacity: 0; }
+.stagger-2 { animation: fadeInSlideUp 280ms cubic-bezier(0.23, 1, 0.32, 1) 80ms forwards; opacity: 0; }
+.stagger-3 { animation: fadeInSlideUp 300ms cubic-bezier(0.23, 1, 0.32, 1) 120ms forwards; opacity: 0; }
+.stagger-4 { animation: fadeInSlideUp 320ms cubic-bezier(0.23, 1, 0.32, 1) 160ms forwards; opacity: 0; }
+
+/* Frosted glass dock matching app_ui_ux.jpg */
+.frosted-dock {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(239, 234, 225, 0.9);
+  box-shadow: 0 12px 36px -4px rgba(30, 35, 42, 0.12), 0 2px 8px -2px rgba(45, 35, 20, 0.04);
+}
+
+/* Warm tinted shadow utilities */
+.shadow-warm-sm {
+  box-shadow: 0 2px 8px -1px rgba(60, 45, 25, 0.04), 0 1px 3px rgba(60, 45, 25, 0.02);
+}
+
+.shadow-warm-md {
+  box-shadow: 0 8px 24px -4px rgba(60, 45, 25, 0.06), 0 2px 6px -1px rgba(60, 45, 25, 0.02);
+}
+
+.shadow-warm-lg {
+  box-shadow: 0 18px 42px -6px rgba(60, 45, 25, 0.09), 0 6px 16px -2px rgba(60, 45, 25, 0.03);
+}
+
+.shadow-floating-device {
+  box-shadow: 0 30px 70px -15px rgba(50, 38, 20, 0.12), 0 10px 25px -5px rgba(50, 38, 20, 0.05), 0 0 1px 1px rgba(239, 234, 225, 0.8);
+}
+
+/* GPU Acceleration & Performance Optimizations for Budget Devices */
+.gpu-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  will-change: transform;
+}
+
+/* Glassmorphism utilities - optimized for budget mobile GPUs (reduced blur depth) */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(239, 234, 225, 0.8);
+}
+
+.glass-panel-light {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(239, 234, 225, 0.6);
+}
+
+/* Phone screen frame */
+.phone-shell {
+  max-width: 440px;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  margin: 0 auto;
+  background-color: #FAF8F2;
+  position: relative;
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  isolation: isolate;
+  contain: paint;
+  transform: translateZ(0);
+  transition: max-width 0.35s cubic-bezier(0.23, 1, 0.32, 1), border-radius 0.35s ease, border-width 0.35s ease;
+}
+
+@media (min-width: 768px) {
+  .phone-shell {
+    height: calc(100vh - 24px);
+    height: calc(100dvh - 24px);
+    max-height: 880px;
+    border-radius: 36px;
+    border: 1px solid rgba(229, 223, 211, 0.9);
+    box-shadow: 0 25px 70px -15px rgba(30, 35, 42, 0.18), 0 0 0 1px rgba(229, 223, 211, 0.5);
+    overflow: hidden;
+    margin: 12px auto;
+  }
+
+  /* Expanded Office Desk Mode (for laptop/PC fleet managers) */
+  .phone-shell.expanded-office-mode {
+    max-width: 1040px;
+    height: calc(100vh - 24px);
+    height: calc(100dvh - 24px);
+    max-height: 900px;
+    border-radius: 24px;
+    border: 1px solid rgba(229, 223, 211, 0.9);
+    box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.22);
+    margin: 12px auto;
+  }
+}
+
+/* Floating Navigation Dock Positioning: raised 56px on mobile browser to clear URL bars */
+.floating-dock-container {
+  bottom: calc(56px + env(safe-area-inset-bottom, 0px));
+  transition: bottom 0.2s ease-out;
+}
+
+/* Standalone PWA / Native Android Capacitor APK (No browser bars -> dock rests 14px above screen edge / gesture pill) */
+@media (display-mode: standalone) {
+  .floating-dock-container {
+    bottom: max(14px, env(safe-area-inset-bottom, 14px));
+  }
+}
+
+.is-standalone .floating-dock-container,
+.is-native-app .floating-dock-container {
+  bottom: max(14px, env(safe-area-inset-bottom, 14px)) !important;
+}
+
+@media (min-width: 768px) {
+  .floating-dock-container {
+    bottom: 16px !important;
+  }
+}
+
+/* Android 15 & Modern Notch / Edge-to-Edge Safe Area Inset Handling */
+.app-header-safe-top {
+  padding-top: max(16px, env(safe-area-inset-top, 16px));
+}
+
+.is-standalone .app-header-safe-top,
+.is-native-app .app-header-safe-top {
+  padding-top: max(18px, env(safe-area-inset-top, 18px)) !important;
+}
+
+.safe-bottom-area {
+  padding-bottom: max(14px, env(safe-area-inset-bottom, 14px));
+}
+
+/* Sleek iOS-style subtle scrollbar for natural scrolling feedback */
+.smooth-scroll-container {
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(30, 35, 42, 0.2) transparent;
+}
+
+.smooth-scroll-container::-webkit-scrollbar {
+  width: 4px;
+}
+
+.smooth-scroll-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.smooth-scroll-container::-webkit-scrollbar-thumb {
+  background: rgba(30, 35, 42, 0.18);
+  border-radius: 9999px;
+}
+
+.smooth-scroll-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(30, 35, 42, 0.35);
+}
+
+/* Modern iOS-Style Slide-Up Bottom Sheet Utilities */
+.sheet-backdrop {
+  background-color: rgba(15, 23, 42, 0.40);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+@keyframes sheetSlideUpMobile {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes sheetFadeInCenter {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-sheet-up {
+  animation: sheetSlideUpMobile 280ms cubic-bezier(0.2, 0.9, 0.3, 1) forwards;
+}
+
+@media (min-width: 640px) {
+  .animate-sheet-up {
+    animation: sheetFadeInCenter 220ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+}
+
+/* Mobile bottom sheet handle */
+.sheet-drag-handle {
+  width: 40px;
+  height: 5px;
+  border-radius: 9999px;
+  background-color: #D1D5DB;
+  margin: 8px auto 10px auto;
+  flex-shrink: 0;
+}
+
+/* Dedicated In-Phone Modal Container & Backdrop (Never purged) */
+#phone-modal-root,
+.phone-modal-container {
+  position: absolute;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+#phone-modal-root:not(:empty),
+.phone-modal-container:not(:empty) {
+  pointer-events: auto;
+}
+
+#phone-modal-root > *,
+.phone-modal-container > * {
+  pointer-events: auto !important;
+}
+
+.modal-center-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 50;
+  background-color: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px;
+  overflow-y: auto;
+  pointer-events: auto !important;
+}
+
+/* Fallback if ever rendered on document.body directly */
+body > .modal-center-backdrop {
+  position: fixed;
+  z-index: 9999;
+  pointer-events: auto !important;
+}
+
+.modal-card-center {
+  background-color: #FFFFFF;
+  border-radius: 28px;
+  max-width: 420px;
+  width: 100%;
+  max-height: min(92%, 640px);
+  max-height: min(92dvh, 640px);
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.28), 0 0 0 1px rgba(229, 223, 211, 0.8);
+  overflow: hidden;
+  animation: modalCardPop 200ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  margin: auto;
+  pointer-events: auto !important;
+}
+
+@keyframes modalCardPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.92) translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Accessibility: prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Account & Data Deletion Request — GaadiDesk by AGX</title>
+  <link rel="icon" type="image/png" href="/gaadidesk_logo.png" />
+  <style>
+    :root {
+      --canvas: #FAF8F2;
+      --card: #FFFFFF;
+      --border: #E5DFD3;
+      --text: #1E232A;
+      --muted: #6B7280;
+      --accent: #D4F05B;
+      --danger: #EF4444;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--canvas);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 24px 16px;
+      display: flex;
+      justify-content: center;
+    }
+    .container {
+      max-width: 640px;
+      width: 100%;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 32px 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .brand img {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+    }
+    h1 {
+      font-size: 22px;
+      font-weight: 800;
+      color: #111827;
+      margin-bottom: 8px;
+    }
+    .lead {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+    .section {
+      background: #F8F6F0;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .section h2 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: #111827;
+    }
+    .section ol, .section ul {
+      padding-left: 20px;
+      font-size: 13px;
+      color: #374151;
+    }
+    .section li {
+      margin-bottom: 8px;
+    }
+    .badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      background: #FEE2E2;
+      color: #991B1B;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      margin-bottom: 12px;
+    }
+    .form-group {
+      margin-bottom: 16px;
+    }
+    label {
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: #111827;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      font-size: 14px;
+      background: #FFFFFF;
+      outline: none;
+    }
+    input:focus, textarea:focus {
+      border-color: #111827;
+    }
+    button {
+      width: 100%;
+      padding: 14px;
+      background: #111827;
+      color: #FFFFFF;
+      font-size: 14px;
+      font-weight: 700;
+      border: none;
+      border-radius: 9999px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    button:hover {
+      background: #000000;
+    }
+    .footer-note {
+      text-align: center;
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 24px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="brand">
+      <img src="/gaadidesk_logo.png" alt="GaadiDesk Logo" />
+      <div>
+        <h2 style="font-size: 18px; font-weight: 800;">GaadiDesk by AGX</h2>
+        <p style="font-size: 12px; color: var(--muted);">Account & Data Safety Compliance</p>
+      </div>
+    </div>
+
+    <h1>Request Account & Data Deletion</h1>
+    <p class="lead">
+      In accordance with Google Play Store Policies and user privacy standards, you have the right to request permanent deletion of your GaadiDesk account and all associated operational data.
+    </p>
+
+    <!-- Method 1: Instant In-App Deletion -->
+    <div class="section">
+      <h2>Method 1: Instant In-App Deletion (Recommended)</h2>
+      <ol>
+        <li>Open the <b>GaadiDesk</b> mobile app on your Android device.</li>
+        <li>Tap the <b>Menu (More)</b> icon in the bottom navigation bar.</li>
+        <li>Scroll down to the <b>Account & Settings</b> section.</li>
+        <li>Tap <b>Delete Account & Wipe Data</b>.</li>
+        <li>Confirm your decision. All business profiles, bookings, fleet records, customer contacts, and driver ledger entries will be permanently erased immediately.</li>
+      </ol>
+    </div>
+
+    <!-- Method 2: Web Deletion Request Form -->
+    <div class="section">
+      <span class="badge">Permanent Deletion</span>
+      <h2>Method 2: Submit Web Deletion Request</h2>
+      <p style="font-size: 13px; color: #4B5563; margin-bottom: 16px;">
+        If you have uninstalled the app or cannot access your phone, submit your registered mobile number below. Our support team will process your deletion request within 48 business hours.
+      </p>
+
+      <form onsubmit="handleSubmit(event)">
+        <div class="form-group">
+          <label for="phone">Registered Mobile Number (10 Digits)</label>
+          <input type="tel" id="phone" placeholder="e.g. 9890123456" pattern="[0-9]{10}" required />
+        </div>
+        <div class="form-group">
+          <label for="businessName">Travel / Fleet Business Name</label>
+          <input type="text" id="businessName" placeholder="e.g. Royal Tours & Travels" required />
+        </div>
+        <div class="form-group">
+          <label for="reason">Reason for Account Deletion (Optional)</label>
+          <textarea id="reason" rows="3" placeholder="Let us know why you are leaving..."></textarea>
+        </div>
+        <button type="submit" id="submitBtn">Submit Deletion Request</button>
+      </form>
+      <div id="statusMsg" style="display:none; margin-top: 14px; padding: 12px; border-radius: 12px; background: #DCFCE7; color: #166534; font-size: 13px; font-weight: 600; text-align: center;">
+        ✓ Your request has been recorded. Our team will verify and wipe all associated data within 48 hours.
+      </div>
+    </div>
+
+    <!-- What Data is Deleted -->
+    <div class="section">
+      <h2>What Data is Deleted?</h2>
+      <ul>
+        <li><b>Business Profile:</b> Agency name, GSTIN, owner credentials, phone numbers, and addresses.</li>
+        <li><b>Fleet Assets:</b> Vehicle plates, insurance, fitness, PUC, permits, and inspection records.</li>
+        <li><b>Trips & Ledger:</b> Active bookings, trip history, customer CRM contacts, driver bata, and GST invoices.</li>
+        <li><b>Cloud Backups:</b> All synchronized database rows in Supabase and cached media files.</li>
+      </ul>
+      <p style="font-size: 11px; color: #6B7280; margin-top: 10px;">
+        *Note: Financial tax records may be retained locally on your device if exported as CA Excel / PDF sheets for income tax compliance.
+      </p>
+    </div>
+
+    <p class="footer-note">
+      GaadiDesk Technologies • For support assistance, contact: support@gaadidesk.in
+    </p>
+  </div>
+
+  <script>
+    function handleSubmit(e) {
+      e.preventDefault();
+      document.getElementById('submitBtn').disabled = true;
+      document.getElementById('submitBtn').innerText = 'Processing...';
+      setTimeout(function() {
+        document.getElementById('submitBtn').style.display = 'none';
+        document.getElementById('statusMsg').style.display = 'block';
+      }, 800);
+    }
+  </script>
+</body>
+</html>
